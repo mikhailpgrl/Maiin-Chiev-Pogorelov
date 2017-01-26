@@ -48,13 +48,13 @@ public class CLI {
 		for (int i = edge; i < nbNodes - 1; i++) {
 			this.l.add(addVal);
 		}
-		for (int i = 0; i < l.size() ; i++) {
-			if (i % 10 == 0 && i != 0){
-				System.out.println( l.get(i));
-			}else
-				System.out.print(l.get(i) +"\t");
-		}
-		System.out.println("Nodes: " + this.nbNodes + "\t liste: " + this.l.size());
+//		for (int i = 0; i < l.size() ; i++) {
+//			if (i % 10 == 0 && i != 0){
+//				System.out.println( l.get(i));
+//			}else
+//				System.out.print(l.get(i) +"\t");
+//		}
+//		System.out.println("Nodes: " + this.nbNodes + "\t liste: " + this.l.size());
 	}
 	private void initializeL(int start) {
 		// TODO Auto-generated method stub
@@ -93,6 +93,42 @@ public class CLI {
 		addL(listNode,lastNode);
 		addI(listNode);
 		listNode.clear();
+	}
+	
+	public void showC(){
+		System.out.println("\nC :");
+		for (int i = 0; i < c.size(); i++) {
+			if (i % 10 == 0 && i != 0){
+				System.out.println( c.get(i));
+			}else
+				System.out.print(c.get(i) +"\t");
+			
+		}
+	}
+	public void showL(){
+		System.out.println("\nL :");
+		for (int i = 0; i < l.size(); i++) {
+			if (i % 10 == 0 && i != 0){
+				System.out.println( l.get(i));
+			}else
+				System.out.print(l.get(i) +"\t");
+			
+		}
+	}
+	public void showI(){
+		System.out.println("\nI :");
+		for (int i = 0; i < this.i.size(); i++) {
+			if (i % 10 == 0 && i != 0){
+				System.out.println( this.i.get(i));
+			}else
+				System.out.print(this.i.get(i) +"\t");
+			
+		}
+	}
+	public void showCLI(){
+		showC();
+		showL();
+		showI();
 	}
 	
 }

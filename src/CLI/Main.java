@@ -14,7 +14,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String namefile = "p2p-Gnutella08.txt";
+		//String namefile = "p2p-Gnutella08.txt";
+		String namefile = "test.txt";
 		filePath = Paths.get(System.getProperty("user.dir") + "/src/files/" + namefile);
 		List<String> list = Tools.readFiles(filePath);
 		int nbNodes = Tools.readFilesNode(filePath);
@@ -27,6 +28,7 @@ public class Main {
 //		}
 		CLI cli = new CLI(nbNodes);
 		cli.createCLI(list);
+		cli.showCLI();
 		
 		System.out.println((float)1/10);
 	}
