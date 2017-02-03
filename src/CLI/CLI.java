@@ -129,6 +129,15 @@ public class CLI {
 		showC();
 		showL();
 		showI();
+		System.out.println();
+	}
+
+	public int getNbNodes() {
+		return nbNodes;
+	}
+
+	public void setNbNodes(int nbNodes) {
+		this.nbNodes = nbNodes;
 	}
 	
 }
