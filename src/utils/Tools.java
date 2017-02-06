@@ -64,6 +64,15 @@ public class Tools {
 			return true;
 		}
 		return false;
-		
+	}
+	/**
+	 *  Copy t1 in t2
+	 * @param t1
+	 * @param t2
+	 */
+	public static void copyFloatTable(float[] t1, float[] t2){
+		for (int i = 0; i < t2.length; i++) {
+			t2[i] = t1[i];
+		}
 	}
 }

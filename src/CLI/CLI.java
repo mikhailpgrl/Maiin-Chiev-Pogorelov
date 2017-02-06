@@ -139,5 +139,31 @@ public class CLI {
 	public void setNbNodes(int nbNodes) {
 		this.nbNodes = nbNodes;
 	}
+
+	public List<Float> getC() {
+		return c;
+	}
+
+	public void setC(List<Float> c) {
+		this.c = c;
+	}
+
+	public List<Integer> getL() {
+		return l;
+	}
+
+	public void setL(List<Integer> l) {
+		this.l = l;
+	}
+
+	public List<Integer> getI() {
+		return i;
+	}
+
+	public void setI(List<Integer> i) {
+		this.i = i;
+	}
+	
+	
 	
 }

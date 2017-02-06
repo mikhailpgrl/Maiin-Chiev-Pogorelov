@@ -36,6 +36,15 @@ public class Main {
 		PageRank pr = new PageRank(cli);
 		pr.pageRankZero();
 		pr.showPageRankZero();
+		pr.initializeX();
+		for (int i = 0; i < 2; i++) {
+			System.out.println("Loop : " + i);
+			pr.transposeProduct();
+			pr.showVector();
+			pr.showTranspore();
+			pr.sumVector();
+			
+		}
 	}
 
 }
