@@ -8,16 +8,17 @@ import utils.Tools;
 public class PageRank {
 	private CLI cli;
 	private List<Float> pr;
-	//vector
-	private float[] x;
-	// transpore
-	private float[] y;
+	// old vector
+	private double[] x;
+	// new vector
+	private double[] y;
+	private double norm;
 	
 	public PageRank(CLI cli){
 		this.cli = cli;
 		this.pr = new ArrayList<Float>();
-		this.x = new float[cli.getNbNodes()];
-		this.y = new float[cli.getNbNodes()];
+		this.x = new double[cli.getNbNodes()];
+		this.y = new double[cli.getNbNodes()];
 	}
 	
 	public void pageRankZero(){
@@ -50,7 +51,7 @@ public class PageRank {
 				y[this.cli.getI().get(j)] += this.cli.getC().get(j) * x[i];
 			}
 		}
-		Tools.copyFloatTable(y, x);
+		Tools.reverseDoubleTable(y, x);
 	}
 	
 	public void showTranspore(){
@@ -74,12 +75,28 @@ public class PageRank {
 			System.out.println(x[i]);
 		}
 	}
+	
 	public void sumVector(){
 		float sum = 0;
 		for (int i = 0; i < y.length; i++) {
 			sum += y[i];
 		}
 		System.out.println(sum);
+	}
+	public void calculeNorm(){
+		double somme = 0; 
+		showVector();
+		showNorm();
+		for (int i = 0; i < x.length; i++) {
+			somme += Math.pow(x[i] - y[i], 2);
+		}
+		System.out.println(somme);
+		norm = Math.sqrt(somme);
+		
+	}
+	public void showNorm(){
+		System.out.println("Norm");
+		System.out.println(norm);
 	}
 	
 }
