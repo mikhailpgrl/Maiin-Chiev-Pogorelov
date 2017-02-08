@@ -70,7 +70,7 @@ public class Tools {
 	 * @param t1
 	 * @param t2
 	 */
-	public static void copyDoubleTable(double[] t1, double[] t2){
+	public static void copyFloatTable(float[] t1, float[] t2){
 		for (int i = 0; i < t2.length; i++) {
 			t2[i] = t1[i];
 		}
@@ -81,8 +81,8 @@ public class Tools {
 	 * @param t1
 	 * @param t2
 	 */
-	public static void reverseDoubleTable(double[] t1, double[] t2){
-		double[] temp = new double[t1.length];
+	public static void reverseFloatTable(float[] t1, float[] t2){
+		float[] temp = new float[t1.length];
 		for (int i = 0; i < t2.length; i++) {
 			temp[i] = t2[i];
 			t2[i] = t1[i];

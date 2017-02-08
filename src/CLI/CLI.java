@@ -7,13 +7,13 @@ import utils.Node;
 
 public class CLI {
 
-	private List<Double> c;
+	private List<Float> c;
 	private List<Integer> l;
 	private List<Integer> i;
 	private int nbNodes;
 	
 	public CLI(int nbNodes){
-		this.c = new ArrayList<Double>();
+		this.c = new ArrayList<Float>();
 		this.l = new ArrayList<Integer>();
 		this.i = new ArrayList<Integer>();
 		this.nbNodes = nbNodes;
@@ -68,7 +68,7 @@ public class CLI {
 
 	public void addC(List<Node> listNode){
 		for(int j = 0 ; j < listNode.size(); j++){
-			this.c.add((double) 1 / listNode.size());
+			this.c.add((float) 1 / listNode.size());
 		}
 	}
 	
@@ -140,11 +140,11 @@ public class CLI {
 		this.nbNodes = nbNodes;
 	}
 
-	public List<Double> getC() {
+	public List<Float> getC() {
 		return c;
 	}
 
-	public void setC(List<Double> c) {
+	public void setC(List<Float> c) {
 		this.c = c;
 	}
 
