@@ -32,3 +32,5 @@ ca
 pas
 rien
 aucun
+l'
+d'

@@ -6,7 +6,15 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,9 +25,11 @@ import utils.Tools;
 
 public class Word {
 
+	public static Path filePath;
 	public List<String> listWord;
 	
 	public Word(){
+		filePath = Paths.get(System.getProperty("user.dir") + "/src/files/Word.txt");
 		this.listWord = new ArrayList<String>();
 	}
 	
@@ -91,18 +101,57 @@ public class Word {
 		}
 	}
 	
-	public void removeUpperCase(){
-		for (int i = 0; i < listWord.size(); i++) {
-			listWord.set(i, listWord.get(i).toLowerCase());
+	public void showListWordOneLine(){
+		for(int i = 0 ; i < this.listWord.size() ; i++){
+			System.out.println(listWord.get(i));
 		}
 	}
 	
+	public void removeUpperCase(){
+		Tools.removeUpperCase(listWord);
+	}
+	
+	public void removeAccents(){
+		Tools.removeAccents(listWord);
+	}
+	public void sort(){
+		Collections.sort(listWord);
+	}
+	
 	public void removeDuplicate(){
-		Set<String> hs = new HashSet<>();
-		hs.addAll(this.listWord);
-		System.out.println(listWord.size());
-		this.listWord.clear();
-		this.listWord.addAll(hs);
-		System.out.println(listWord.size());
+		Tools.removeDuplicate(listWord);
+	}
+	
+	public void removeQuote(){
+		Tools.removeQuote(listWord);
+	}
+	 
+	public void removeUniqueCharactere(){
+		Tools.removeACharacter(listWord);
+	}
+
+	public void removeEmptyWord(List<String> readFiles) {
+		// TODO Auto-generated method stub
+		Tools.removeEmptyWord(readFiles,listWord);
+	}
+	public void createFileWord(){
+		String s = "";
+		for (int i = 0; i < listWord.size(); i++) {
+				s += listWord.get(i) + "\n";
+		}
+		byte[] inputBytes = s.getBytes();
+		ByteBuffer writeBuffer = ByteBuffer.wrap(inputBytes);
+		FileChannel writeChannel;
+		try {
+			writeChannel = FileChannel.open(filePath, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+			writeChannel.write(writeBuffer);
+			//int noOfBytesWritten = writeChannel.write(writeBuffer);
+
+			writeChannel.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }

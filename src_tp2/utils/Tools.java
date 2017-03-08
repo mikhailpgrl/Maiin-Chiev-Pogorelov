@@ -1,7 +1,16 @@
 package utils;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -77,4 +86,93 @@ public class Tools {
 	}
 	return balise;
 	}
+	
+	public static void removeUpperCase(List<String> list){
+		for (int i = 0; i < list.size(); i++) {
+			list.set(i, list.get(i).toLowerCase());
+		}
+	}
+	
+	public static void removeAccents(List<String> list){
+		String s;
+		for (int i = 0; i < list.size(); i++) {
+			s = Normalizer.normalize(list.get(i), Normalizer.Form.NFD);
+		    s = s.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+		    list.set(i, s);
+		}
+	}
+	
+	public static void removeDuplicate(List<String> list){
+		Set<String> hs = new HashSet<String>(list);
+		//hs.addAll(list);
+		//System.out.println(list.size());
+		list.clear();
+		list.addAll(hs);
+		//System.out.println(list).size());
+	}
+	
+	public static void removeQuote(List<String> list){
+		String[] split;
+		for (int i = 0 ; i < list.size() ; i++) {
+			if (list.get(i).contains("'")){
+				split = list.get(i).split("'");
+				if( split.length > 1)
+					list.set(i, split[1]);
+			}
+		}
+	}
+	public static void removeACharacter(List<String> list){
+		for (int i = list.size() - 1  ; i > 0 ; i--) {
+			if (list.get(i).length() == 1){
+				list.remove(i);
+			}
+		}
+	}
+	
+
+	public static List<String> readFiles(Path fileName){
+        List<String> listString = new ArrayList<String>();
+        try {
+            listString = Files.readAllLines(fileName);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return listString;
+    }
+
+	public static void removeEmptyWord(List<String> list, List<String> listWord) {
+		// TODO Auto-generated method stub
+		
+		for (int i = 0; i < list.size(); i++) {
+			for (int j = 0; j < listWord.size(); j++) {
+				if (list.get(i).equals(listWord.get(j))){
+					listWord.remove(j);
+					break;
+				}
+			}
+		}
+		
+	}
+	
+//	public static int findWorldInList(List<String> list,String word){
+//		Collections.sort(list);
+//		
+//		
+//		
+//		return -1;
+//	}
+//	
+//	private int find(List<String> list,String word, int min , int max){
+//		if (min == max)
+//			if (!word.equals(word))
+//				return -1;
+//			else
+//				return min;
+//		int mid = ( max + min ) / 2;
+//		
+//		return max;
+//		
+//	}
+	
 }
