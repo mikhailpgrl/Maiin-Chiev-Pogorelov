@@ -89,17 +89,28 @@ public class Tools {
 	
 	public static void removeUpperCase(List<String> list){
 		for (int i = 0; i < list.size(); i++) {
-			list.set(i, list.get(i).toLowerCase());
+			list.set(i, removeUpperCase(list.get(i)));
 		}
+	}
+
+	public static String removeUpperCase(String temp) {
+		// TODO Auto-generated method stub
+		return temp.toLowerCase();
 	}
 	
 	public static void removeAccents(List<String> list){
-		String s;
+	//	String s;
 		for (int i = 0; i < list.size(); i++) {
-			s = Normalizer.normalize(list.get(i), Normalizer.Form.NFD);
-		    s = s.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
-		    list.set(i, s);
+//			s = Normalizer.normalize(list.get(i), Normalizer.Form.NFD);
+//		    s = s.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+		    list.set(i, removeAccents(list.get(i)));
 		}
+	}
+	
+	public static String removeAccents(String s){
+		String temp = Normalizer.normalize(s, Normalizer.Form.NFD);
+		return temp.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+		
 	}
 	
 	public static void removeDuplicate(List<String> list){
@@ -154,6 +165,7 @@ public class Tools {
 		}
 		
 	}
+
 	
 //	public static int findWorldInList(List<String> list,String word){
 //		Collections.sort(list);

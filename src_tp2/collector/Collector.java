@@ -1,5 +1,6 @@
 package collector;
 
+import java.awt.print.Pageable;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
@@ -8,25 +9,30 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
 import utils.Node;
 import utils.Page;
+import utils.PageWord;
+import utils.Tools;
 
 public class Collector {
 
 	public List<Page> listPage;
 	public List<Node> listNode;
+	public List<PageWord> listWord;
 	public static Path filePath;
 	public static Path fileNodePath;
+	public static Path fileWordPath;
 	
 	public Collector(){
 		this.listPage = new ArrayList<Page>();
 		this.listNode = new ArrayList<Node>();
+		this.listWord = new ArrayList<PageWord>();
 		filePath = Paths.get(System.getProperty("user.dir") + "/src/files/id-title.txt");
 		fileNodePath = Paths.get(System.getProperty("user.dir") + "/src/files/graphe.txt");
+		fileWordPath = Paths.get(System.getProperty("user.dir") + "/src/files/mot-page.txt");
 	}
 	
 	public void initializeListPage(List<String> listFile){
@@ -245,4 +251,90 @@ public class Collector {
 		}
 		
 	}
+	
+	
+	
+	
+	public void initializeListWord(List<String> listFile , List<String> dictionary){
+		boolean balisePage = false;
+		boolean first = true;
+		String s;
+		String title = null;
+		String temp = null;
+		int id = 0;
+		for(int j = 0 ; j < dictionary.size() ; j ++){
+			listWord.add(new PageWord(j, dictionary.get(j)));
+			for(int i = 0 ;  i < listFile.size() ; i++){
+				if (listFile.get(i).contains("<page>")){
+					balisePage = true;
+				}
+	
+				if (balisePage && first && listFile.get(i).contains("<id>") && listFile.get(i).contains("</id>")){
+					s = listFile.get(i);
+					s = s.replace("<id>", "");
+					s = s.replace("</id>", "");
+					s = s.trim();
+					id = Integer.parseInt(s);
+					first = false;
+				}
+				if (balisePage && listFile.get(i).contains("<text>") && listFile.get(i).contains("</text>")) {
+					//&& (listFile.get(i).contains(dictionary.get(j) + " " ) && listFile.get(i).contains(dictionary.get(j) + "]" ) )
+					temp = listFile.get(i);
+					temp = temp.replace("<text>", "");
+					temp = temp.replace("</text>", "");
+					temp = temp.trim();
+					temp = Tools.removeAccents(temp);
+					temp = Tools.removeUpperCase(temp);
+					if((listFile.get(i).contains(dictionary.get(j) + " " ) || listFile.get(i).contains(dictionary.get(j) + "]" )))
+							listWord.get(j).addList(id);
+				}
+				
+				if (listFile.get(i).contains("</page>")){
+					balisePage = false;
+					first = true;
+					listPage.add(new Page(title,id));
+				}
+				
+				
+			}
+		}
+		System.out.println(listWord.size() + "\tksjhdlfbkmlsjdbfoùklnd");
+		
+	}
+	public void createWordFile() {
+		String s = "";
+		s += "Word\tid\tliste page\n";
+		for (int j = 0; j < listWord.size(); j++) {
+			s += listWord.get(j).getWord() + "\t" + listWord.get(j).getId() + "\t";
+			for (int i = 0; i < listWord.get(j).getListPage().size(); i++) {
+				s += listWord.get(j).getListPageAtPosition(i) + "\t";
+			}
+			s += "\n";
+		}
+		byte[] inputBytes = s.getBytes();
+		ByteBuffer writeBuffer = ByteBuffer.wrap(inputBytes);
+		FileChannel writeChannel;
+		try {
+			writeChannel = FileChannel.open(fileWordPath, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+			writeChannel.write(writeBuffer);
+			//int noOfBytesWritten = writeChannel.write(writeBuffer);
+
+			writeChannel.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	public void deleteWordFile() {
+		// TODO Auto-generated method stub
+		try {
+			Files.delete(fileWordPath);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 }
