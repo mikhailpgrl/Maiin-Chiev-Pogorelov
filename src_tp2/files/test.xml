@@ -1,0 +1,56 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.10/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.10/ http://www.mediawiki.org/xml/export-0.10.xsd" version="0.10" xml:lang="fr">
+<page>
+    <title>Antoine</title>
+    <ns>0</ns>
+    <id>3</id>
+    <revision>
+      <id>132619287</id>
+      <parentid>132619275</parentid>
+      <timestamp>2016-12-12T12:49:09Z</timestamp>
+      <contributor>
+        <username>Hercule</username>
+        <id>271994</id>
+      </contributor>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <text>absence absence [[haha]] abraham aboutit kevin </text>
+      <sha1>4gdegly44pdfqd8qjreat0jca3dcow6</sha1>
+    </revision>
+  </page>
+  <page>
+    <title>Antoine abdallah abdallah</title>
+    <ns>0</ns>
+    <id>10</id>
+    <revision>
+      <id>132619287</id>
+      <parentid>132619275</parentid>
+      <timestamp>2016-12-12T12:49:09Z</timestamp>
+      <contributor>
+        <username>Hercule</username>
+        <id>271994</id>
+      </contributor>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <text>absence absence absence [[haha]] abraham aboutit [[Antoine]] kevin </text>
+      <sha1>4gdegly44pdfqd8qjreat0jca3dcow6</sha1>
+    </revision>
+  </page>
+    <page>
+    <title>haha</title>
+    <ns>0</ns>
+    <id>99</id>
+    <revision>
+      <id>132619287</id>
+      <parentid>132619275</parentid>
+      <timestamp>2016-12-12T12:49:09Z</timestamp>
+      <contributor>
+        <username>Hercule</username>
+        <id>271994</id>
+      </contributor>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <text>absence absence absence [[Antoine]] abraham aboutit kevin </text>
+      <sha1>4gdegly44pdfqd8qjreat0jca3dcow6</sha1>
+    </revision>
+  </page>
+</mediawiki>
